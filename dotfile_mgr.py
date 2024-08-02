@@ -13,6 +13,7 @@ so it can be used as a standalone script.
 """
 
 import cmd
+import sys
 
 
 class DotMgr(cmd.Cmd):
@@ -32,7 +33,7 @@ class DotMgr(cmd.Cmd):
 
 if __name__ == '__main__':
     DotMgr().cmdloop()
-    exit(0)
+    sys.exit(0)
 
 from pytest import CaptureFixture
 
