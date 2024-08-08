@@ -13,6 +13,7 @@ so it can be used as a standalone script.
 """
 
 import cmd
+from pathlib import Path
 import sys
 
 
@@ -20,6 +21,9 @@ class DotMgr(cmd.Cmd):
     """ Simple command line interface for managing dotfiles. """
     prompt = '>> '
     intro = "Welcome to Dotfile Manager. Type help or ? to list"
+    dst_dir = Path.home()
+    bld_dir = Path(__file__).resolve().parent / "build"
+    src_dir = Path(__file__).resolve().parent / "dotfiles"
 
     def do_exit(self, line: str):
         """ Exit the program. """
@@ -35,6 +39,8 @@ if __name__ == '__main__':
     DotMgr().cmdloop()
     sys.exit(0)
 
+# For simplicity: unit tests follow, for now.
+# They should be separated into separate folder.
 from pytest import CaptureFixture
 
 
@@ -53,3 +59,12 @@ class TestDotMgr:  # pylint: disable=missing-function-docstring
         DotMgr().do_greet("")
         captured = capsys.readouterr()
         assert captured.out == "Hello, world!\n"
+
+    def test_home_dir(self):
+        assert Path.home() == DotMgr().dst_dir
+
+    def test_build_dir(self):
+        assert Path.cwd() / "build" == DotMgr().bld_dir
+
+    def test_file_dir(self):
+        assert Path.cwd() / "dotfiles" == DotMgr().src_dir
