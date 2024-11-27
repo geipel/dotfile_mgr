@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # =============================================================================
 # Copyright (c) 2024 by Mike Geipel
-# MIT License: https://github.com/geipel/dotfiles/blob/main/LICENSE
+# MIT License: https://github.com/geipel/dotfile_mgr/blob/main/LICENSE
 # =============================================================================
 
 """
@@ -10,6 +10,8 @@ A simple command line interface for managing dotfiles.
 
 This app should rely only on built-in Python libraries,
 so it can be used as a standalone script.
+
+(However, unit tests are currently still inline; pytest is needed to run them.)
 """
 
 import cmd
